@@ -36,7 +36,7 @@ pipeline {
  
         stage('Build') {
             steps {
-                    sh echo "'mvn -B clean install -f helloworld/pom.xml'"
+                    sh 'echo "mvn -B clean install -f helloworld/pom.xml"'
             }
         }
        
@@ -44,7 +44,7 @@ pipeline {
         stage('BuildImage') {
             steps {
                 // call buildah with Dockerfile
-                sh 'buildah bud -t svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion} -f helloworld/Dockerfile'                
+                sh 'echo "buildah bud -t svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion} -f helloworld/Dockerfile"'
            
             }
            
