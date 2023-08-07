@@ -36,7 +36,7 @@ pipeline {
  
         stage('Build') {
             steps {
-                    sh 'mvn -B clean install -f helloworld/pom.xml'
+                    sh echo "'mvn -B clean install -f helloworld/pom.xml'"
             }
         }
        
@@ -53,7 +53,7 @@ pipeline {
         stage('PushImage') {
             steps {
                 // push image to registry
-                withCredentials([usernamePassword(credentialsId: 'SVD-NGDC-Uploader', passwordVariable: 'password', usernameVariable: 'username')]){
+                withCredentials([usernamePassword(credentialsId: 'registryUser', passwordVariable: 'password', usernameVariable: 'username')]){
                     sh '''
                     echo "buildah login -u ${username} -p ${password} svd-dockerreg-prod1.svd.local"
                     echo "buildah push svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion} docker://svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion}"
@@ -68,7 +68,7 @@ pipeline {
         stage('TriggerGitOps') {
             steps {
            
-                withCredentials([usernamePassword(credentialsId: 'svc_OpenShift_GitOps_config-mgmt', passwordVariable: 'password', usernameVariable: 'username')]){
+                withCredentials([usernamePassword(credentialsId: 'configmgmtUser', passwordVariable: 'password', usernameVariable: 'username')]){
  
                 sh '''
                 echo "git clone https://${username}:${password}@gitlab-prod1.svd.local/svd/cloud/openshift/config-mgmt/helloworld.git cfgmgt"
