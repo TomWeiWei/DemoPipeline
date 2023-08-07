@@ -2,16 +2,9 @@
 // def imageVersion
  
 pipeline {
- /*   agent {
-          node 'svd-runner-prod1.svd.local'
-    }
+   agent any
  
-    tools {
-        jdk 'AdoptJDK11'
-        maven 'Maven_3.8.3'
-    }
 
-*/
 
     parameters {
         booleanParam(name: 'buildDockerImage', defaultValue: 'false', description: 'Gibt an ob die Instanz deployed werden soll, falls es nicht der main branch ist')
