@@ -51,6 +51,7 @@ pipeline {
                     string(name: 'environment', value: params.environment)
                 ]
             }
+        }
  
         stage('PushImage') {
             steps {
