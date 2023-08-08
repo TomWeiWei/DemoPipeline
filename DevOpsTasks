@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'appname', defaultValue: '', description: 'Name of the application')
+        string(name: 'environment', defaultValue: '', description: 'Deployment environment')
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                echo "Deploying ${params.appname} to ${params.environment}..."
+            }
+        }
+        stage('BuildImage') {
+            steps {
+                echo "Building image for ${params.appname}..."
+            }
+        }
+    }
+}

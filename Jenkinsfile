@@ -44,11 +44,13 @@ pipeline {
         stage('BuildImage') {
             steps {
                 // call buildah with Dockerfile
-                sh 'echo "buildah bud -t svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion} -f helloworld/Dockerfile"'
-           
+//                sh 'echo "buildah bud -t svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion} -f helloworld/Dockerfile"'
+                  sh 'echo "calling sub tasks DevOpsTasks.buildImage..."'      
+                build job: 'DevOpsTasks', parameters: [
+                    string(name: 'appname', value: params.appname),
+                    string(name: 'environment', value: params.environment)
+                ]
             }
-           
-        }
  
         stage('PushImage') {
             steps {
