@@ -51,7 +51,7 @@ pipeline {
                     string(name: 'environment', value: 'envvalue')
                 ]
                 */
-                build 'job2'
+                build 'DevOpsTasks'
             }
         }
  
