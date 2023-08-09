@@ -46,10 +46,12 @@ pipeline {
                 // call buildah with Dockerfile
 //                sh 'echo "buildah bud -t svd-dockerreg-prod1.svd.local/svd/jbosseap74-hello:${imageVersion} -f helloworld/Dockerfile"'
                   sh 'echo "calling sub tasks DevOpsTasks.buildImage..."'      
-                build job: 'DevOpsTasks', parameters: [
-                    string(name: 'appname', value: params.appname),
-                    string(name: 'environment', value: params.environment)
+ /*               build job: 'DevOpsTasks', parameters: [
+                    string(name: 'appname', value: 'appnamevalue'),
+                    string(name: 'environment', value: 'envvalue')
                 ]
+                */
+                build 'job2'
             }
         }
  
