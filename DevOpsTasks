@@ -3,11 +3,12 @@ pipeline {
     parameters {
         string(name: 'appname', defaultValue: '', description: 'Name of the application')
         string(name: 'environment', defaultValue: '', description: 'Deployment environment')
+        string(name: 'imageVersion', defaultValue: '', description: 'Image Version')
     }
     stages {
         stage('Deploy') {
             steps {
-                echo "Deploying ${params.appname} to ${params.environment}..."
+                echo "Deploying ${params.appname} to ${params.environment} with version ${imageVersion}..."
             }
         }
         stage('BuildImage') {
