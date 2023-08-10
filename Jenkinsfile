@@ -49,7 +49,7 @@ pipeline {
                 build job: 'DevOpsTasks/main', parameters: [
                     string(name: 'appname', value: 'appnamevalue'),
                     string(name: 'environment', value: 'envvalue'),
-                    string(name: 'imageVersion0', value: "${imageVersion}")
+                    string(name: 'imageVersion', value: "${imageVersion}")
                 ]
                 
              //   build 'DevOpsTasks/main'
