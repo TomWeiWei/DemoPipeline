@@ -48,7 +48,7 @@ pipeline {
                   sh 'echo "calling sub tasks DevOpsTasks.buildImage..."'      
                 build job: 'DevOpsTasks/main', parameters: [
                     string(name: 'appname', value: 'appnamevalue'),
-                    string(name: 'environment', value: 'envvalue')
+                    string(name: 'environment', value: 'envvalue'),
                     string(name: 'imageVersion0', value: imageVersion)
                 ]
                 
